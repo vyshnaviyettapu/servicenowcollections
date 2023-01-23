@@ -1,0 +1,261 @@
+{
+	"info": {
+		"_postman_id": "db8bc229-95af-4aa5-b402-d2d243244704",
+		"name": "ServiceNowCollection",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "getAllIncidents",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get All Incidents\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"id": "c2b50658-fcb9-49e7-8c29-12055e4a0a10"
+					}
+				}
+			],
+			"_postman_id": "296214e0-f9e3-434e-9ec0-69967ff42cc2",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://dev130435.service-now.com/api/now/table/incident"
+			},
+			"response": []
+		},
+		{
+			"name": "getAllIncidentsQueryparam",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Get All Incidents\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"id": "fe1fd306-ec2b-4ade-ad7e-c499bdcb8b92"
+					}
+				}
+			],
+			"_postman_id": "cf92eeda-5b24-4669-bbb0-02e856999955",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\": \"Testing Sample Data\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev130435.service-now.com/api/now/table/change_request?sysparm_fields=short_description",
+					"protocol": "https",
+					"host": [
+						"dev130435",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"change_request"
+					],
+					"query": [
+						{
+							"key": "sysparm_fields",
+							"value": "short_description"
+						},
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "create incident",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Successful POST request\", function () {\r",
+							"    pm.expect(pm.response.code).to.be.oneOf([201, 202]);\r",
+							"});\r",
+							"var resp=pm.response.json();\r",
+							"console.log(resp.result.sys_id);"
+						],
+						"type": "text/javascript",
+						"id": "db56a357-5120-4f88-9b99-abbdf33cda7f"
+					}
+				}
+			],
+			"_postman_id": "20381af6-96b7-4a60-a5dc-87c04dd2c6df",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"short_description\": \"Testing Sample Data\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://dev130435.service-now.com/api/now/table/incident?sysparm_fields=sys_id%2Cshort_description",
+					"protocol": "https",
+					"host": [
+						"dev130435",
+						"service-now",
+						"com"
+					],
+					"path": [
+						"api",
+						"now",
+						"table",
+						"incident"
+					],
+					"query": [
+						{
+							"key": null,
+							"value": "",
+							"disabled": true
+						},
+						{
+							"key": "sysparm_fields",
+							"value": "sys_id%2Cshort_description"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "editIncident",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"id": "0ae97580-8754-47d9-962c-cefcec35a1be"
+					}
+				}
+			],
+			"_postman_id": "aa98dd26-979a-40c0-a5d4-7ae0fa322570",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"sys_id\": \"dcc0ec8a8724a110fded53983cbb358e\",\r\n    \"short_description\": \"Edit SysID\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": "https://dev130435.service-now.com/api/now/table/incident/dcc0ec8a8724a110fded53983cbb358e"
+			},
+			"response": []
+		},
+		{
+			"name": "deleteIncident",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 204\", function () {\r",
+							"    pm.response.to.have.status(204);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"id": "72b44d67-c41c-4dc2-8df7-52944ee4b582"
+					}
+				}
+			],
+			"_postman_id": "3870f3e9-8a7b-451d-b8cd-34a3d8727236",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": "https://dev130435.service-now.com/api/now/table/incident/46c88ac1a9fe1981014de1c831fbcf6d"
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": {
+			"password": "Vlz7S+yIYr1^",
+			"username": "admin"
+		}
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "9a62d573-2cc7-4326-a231-2ffccb2e8f14"
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				],
+				"id": "0f80ec4a-9f63-4459-82ba-91ca023477f9"
+			}
+		}
+	]
+}
